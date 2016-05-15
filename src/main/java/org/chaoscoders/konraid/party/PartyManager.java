@@ -10,7 +10,7 @@ public class PartyManager {
 
     public static BungeeParty getParty(String player) {
         PLAYER = player;
-        return (BungeeParty) Main.PARTY.get(player);
+        return (BungeeParty) Main.PARTY.get(Main.GETPARTY.get(player));
     }
 
     public static void inviteToParty(String player, BungeeParty party) {
