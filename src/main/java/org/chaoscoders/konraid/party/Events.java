@@ -42,17 +42,17 @@ public class Events implements net.md_5.bungee.api.plugin.Listener {
         ProxiedPlayer p = ev.getPlayer();
         if(Main.GETPARTY.containsKey(p.getName())){
             if(PartyManager.getParty(p.getName()).getOwner() == p){
-                if(PartyManager.getParty(p.getName()).getMembers().size() >
-                        p.getServer().getInfo().getPlayers().size()) {
-                    p.sendMessage(prefix + "§cFehler die Party ist zu groß und es können nicht " +
-                            "alle Spieler teleportiert werden.");
-                } else {
-                    for (String members : PartyManager.getParty(p.getName()).getMembers()) {
-                        ProxiedPlayer t = ProxyServer.getInstance().getPlayer(members);
-                        t.connect(p.getServer().getInfo());
-                    }
-                    PartyManager.getParty(p.getName()).sendMessage(prefix + "§aDie Party Betrit den Server §6" + p.getServer().getInfo().getName());
+                /*if(PartyManager.getParty(p.getName()).getMembers().size() >
+                        p.getServer().getInfo().getPlayers().size()) {*/
+                p.sendMessage(prefix + "§cFehler die Party ist zu groß und es können nicht " +
+                        "alle Spieler teleportiert werden.");
+                p.sendMessage(p.getServer().getInfo().getName());
+                p.sendMessage(p.getServer().getInfo().getPlayers().size() + "");
+                for (String members : PartyManager.getParty(p.getName()).getMembers()) {
+                    ProxiedPlayer t = ProxyServer.getInstance().getPlayer(members);
+                    t.connect(p.getServer().getInfo());
                 }
+                PartyManager.getParty(p.getName()).sendMessage(prefix + "§aDie Party Betrit den Server §6" + p.getServer().getInfo().getName());
             }
         }
     }
