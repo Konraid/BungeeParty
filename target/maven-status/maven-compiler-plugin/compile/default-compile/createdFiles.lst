@@ -1,0 +1,5 @@
+org/chaoscoders/konraid/party/Commands.class
+org/chaoscoders/konraid/party/Events.class
+org/chaoscoders/konraid/party/Main.class
+org/chaoscoders/konraid/party/PartyManager.class
+org/chaoscoders/konraid/party/BungeeParty.class
