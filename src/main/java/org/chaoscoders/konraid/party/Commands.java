@@ -51,15 +51,16 @@ public class Commands extends Command{
 
                                 if(Main.GETPARTY.containsKey(t.getName())) {
                                     p.sendMessage(prefix + "§e" + t.getName()+ " §cist bereits in einer Party!");
-                                }
+                                } else {
 
-                                PartyManager.inviteToParty(t.getName(), PartyManager.getParty(p.getName()));
-                                t.sendMessage(prefix + "§e" + p.getName() +
-                                        " §3hat dich in seine Party eingeladen!");
-                                t.sendMessage(prefix + "§a/party accept §7Um die Party von §e" +
-                                        p.getName() + " §3 zu betreten.");
-                                p.sendMessage(prefix + "§3Du hast den Spieler §e" + t.getName() +
-                                        " §3in deine Party eingeladen.");
+                                    PartyManager.inviteToParty(t.getName(), PartyManager.getParty(p.getName()));
+                                    t.sendMessage(prefix + "§e" + p.getName() +
+                                            " §3hat dich in seine Party eingeladen!");
+                                    t.sendMessage(prefix + "§a/party accept §7Um die Party von §e" +
+                                            p.getName() + " §3 zu betreten.");
+                                    p.sendMessage(prefix + "§3Du hast den Spieler §e" + t.getName() +
+                                            " §3in deine Party eingeladen.");
+                                }
                             }
                         } else {
                             p.sendMessage(prefix + "§cDu bist nicht der Partyleiter.");
@@ -115,9 +116,9 @@ public class Commands extends Command{
                                 if(PartyManager.getParty(p.getName()).getMembers().contains(args[1])) {
                                     PartyManager.removeFromParty(args[1], PartyManager.getParty(p.getName()));
                                     PartyManager.getParty(p.getName()).sendMessage(prefix + "§e" + args[1]
-                                    + " §3 wurde aus der Party gekickt!");
+                                    + " §3wurde aus der Party gekickt!");
                                     ProxyServer.getInstance().getPlayer(args[1]).sendMessage(prefix +
-                                    "§3 du wurdest von §e" + p.getName() + "§3 aus der Party gekickt.");
+                                    "§3Du wurdest von §e" + p.getName() + "§3 aus der Party gekickt.");
                                     Main.GETPARTY.remove(args[1]);
                                 } else {
                                     p.sendMessage(prefix + "§e" + args[1] + "§c ist nicht in deiner Party.");
