@@ -36,8 +36,9 @@ public class Commands extends Command{
             } else {
                 if(args.length >= 1) {
                     if(args[0].equalsIgnoreCase("invite")) {
-                        Main.PARTY.put(p.getName(), new BungeeParty(p, new ArrayList<String>()));
-
+                        if(PartyManager.getParty(p.getName()) == null) {
+                            Main.PARTY.put(p.getName(), new BungeeParty(p, new ArrayList<String>()));
+                        }
                         if(PartyManager.getParty(p.getName()).getOwner() == p) {
                             /*
                                 TODO
@@ -146,6 +147,9 @@ public class Commands extends Command{
                         } else {
                             p.sendMessage(prefix + "§cDu bist in keiner Party.");
                         }
+                    } else {
+                        p.sendMessage(prefix + "§cDer Befehl §9" + args[0] +" §cexistiert nicht." +
+                        "Verwende §e/party §c für eine Liste der verfügbaren Commands.");
                     }
                 }
             }

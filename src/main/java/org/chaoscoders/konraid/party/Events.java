@@ -44,13 +44,18 @@ public class Events implements net.md_5.bungee.api.plugin.Listener {
             if(PartyManager.getParty(p.getName()).getOwner() == p){
                 /*if(PartyManager.getParty(p.getName()).getMembers().size() >
                         p.getServer().getInfo().getPlayers().size()) {*/
-                p.sendMessage(prefix + "§cFehler die Party ist zu groß und es können nicht " +
+                /*p.sendMessage(prefix + "§cFehler die Party ist zu groß und es können nicht " +
                         "alle Spieler teleportiert werden.");
-                p.sendMessage(p.getServer().getInfo().getName());
+                p.sendMessage(p.getServer().getInfo().getName());*/
                 p.sendMessage(p.getServer().getInfo().getPlayers().size() + "");
                 for (String members : PartyManager.getParty(p.getName()).getMembers()) {
                     ProxiedPlayer t = ProxyServer.getInstance().getPlayer(members);
-                    t.connect(p.getServer().getInfo());
+                    if(t.getName() == p.getName()) {
+                    }else if (t.getServer().getInfo() == p.getServer().getInfo()) {
+                        t.sendMessage(prefix + "§3Du bist bereits auf dem Server.");
+                    } else {
+                        t.connect(p.getServer().getInfo());
+                    }
                 }
                 PartyManager.getParty(p.getName()).sendMessage(prefix + "§aDie Party Betrit den Server §6" + p.getServer().getInfo().getName());
             }
